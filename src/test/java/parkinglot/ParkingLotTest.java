@@ -14,11 +14,21 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void givenVehicleNumber_IfPresent_ShouldRemoveFromList() {
+    public void givenVehicleNumber_WhenParked_ShouldUnParkedReturnTrue() {
         ParkingLotSystem parkingLot = new ParkingLotSystem();
         String[] vehicleNumber = { "111", "222"};
         parkingLot.vehicleParking(vehicleNumber);
         boolean isRemoved = parkingLot.vehicleUnparking("111");
         Assert.assertTrue(isRemoved);
     }
+
+    @Test
+    public void givenVehicleNumber_WhenVehicleNotInLot_ShouldReturnFalse() {
+        ParkingLotSystem parkingLot = new ParkingLotSystem();
+        String[] vehicleNumber = { "111", "222"};
+        parkingLot.vehicleParking(vehicleNumber);
+        boolean isRemoved = parkingLot.vehicleUnparking("333");
+        Assert.assertFalse(isRemoved);
+    }
+
 }
