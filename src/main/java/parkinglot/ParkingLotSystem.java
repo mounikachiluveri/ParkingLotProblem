@@ -1,13 +1,24 @@
 package parkinglot;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
 public class ParkingLotSystem {
-    public ParkingLotSystem(Object vehicle) {
-    }
+
+    private final List<String> vehicleList;
 
     public ParkingLotSystem() {
+        this.vehicleList = new ArrayList<>();
     }
 
-    public Boolean park(Object vehicle) {
-        return true;
+    public int vehicleParking(String[] vehicle) {
+        addVehicle(vehicle);
+        return vehicleList.size();
+    }
+
+    private void addVehicle(String[] vehicles) {
+        vehicleList.addAll(Arrays.asList(vehicles));
     }
 }
