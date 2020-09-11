@@ -8,15 +8,15 @@ public class ParkingLotTest {
     @Test
     public void givenVehicle_WhenParked_ShouldReturnTrue() throws ParkingLotException {
         ParkingLotSystem parkingLotSystem = new ParkingLotSystem();
-        String[] vehicleNumber = { "AAA", "BBB"};
+        String[] vehicleNumber = {"AAA", "BBB"};
         int parked = parkingLotSystem.vehicleParking(vehicleNumber);
-        Assert.assertEquals(2,parked);
+        Assert.assertEquals(2, parked);
     }
 
     @Test
     public void givenVehicleNumber_WhenParked_ShouldUnParkedReturnTrue() throws ParkingLotException {
         ParkingLotSystem parkingLot = new ParkingLotSystem();
-        String[] vehicleNumber = { "111", "222"};
+        String[] vehicleNumber = {"111", "222"};
         parkingLot.vehicleParking(vehicleNumber);
         boolean isRemoved = parkingLot.vehicleUnparking("111");
         Assert.assertTrue(isRemoved);
@@ -25,7 +25,7 @@ public class ParkingLotTest {
     @Test
     public void givenVehicleNumber_WhenVehicleNotInLot_ShouldReturnFalse() throws ParkingLotException {
         ParkingLotSystem parkingLot = new ParkingLotSystem();
-        String[] vehicleNumber = { "111", "222"};
+        String[] vehicleNumber = {"111", "222"};
         parkingLot.vehicleParking(vehicleNumber);
         boolean isRemoved = parkingLot.vehicleUnparking("333");
         Assert.assertFalse(isRemoved);

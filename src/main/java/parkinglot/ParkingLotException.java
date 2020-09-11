@@ -1,9 +1,10 @@
 package parkinglot;
 
 public class ParkingLotException extends Exception {
-    public enum ExceptionType{
-        CAPACITY_EXCEEDED
+    public enum ExceptionType {
+        CAPACITY_EXCEEDED, ALREADY_PRESENT
     }
+
     public ExceptionType type;
 
     public ParkingLotException(String message, ExceptionType type) {

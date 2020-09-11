@@ -5,38 +5,35 @@ import java.util.ArrayList;
 public class ParkingLotSystem {
 
     private static final int MAX_CAPACITY = 2;
-    private final ArrayList<String> parkingList;
+    private final ArrayList<Vehicle> parkingList;
+
     private int capacity = 0;
+    public boolean isParked;
 
     public ParkingLotSystem() {
         this.parkingList = new ArrayList<>();
     }
 
     /**
-     * Method for vehicle parking.
-     * @return number of parked vehicles
+     * Method to add vehicle to parking lot
+     * @throws ParkingLotException
+     * @return
      */
-    public int vehicleParking(String[] vehicle) throws ParkingLotException {
-        addVehicle(vehicle);
-        return parkingList.size();
+    public void parkVehicle(Vehicle vehicle) throws ParkingLotException {
+        if(this.parkingList.contains(vehicle))
+            throw new ParkingLotException("Present in parking lot",
+                    ParkingLotException.ExceptionType.ALREADY_PRESENT);
+
+        if (capacity < MAX_CAPACITY) {
+            parkingList.add(vehicle);
+            isParked = true;
+        }
+        //this.informOwner();
+        //  throw new ParkingLotException("Capacity Full", ParkingLotException.ExceptionType.CAPACITY_EXCEEDED);
     }
 
-    /**
-     * Method to add vehicle to parking lot
-     * @param vehicles
-     * @throws ParkingLotException
-     */
-    private void addVehicle(String[] vehicles) throws ParkingLotException {
-        for (String vehicle : vehicles) {
-            if (capacity < MAX_CAPACITY)
-                parkingList.add(vehicle);
-            else {
-                this.informOwner();
-                return;
-                //  throw new ParkingLotException("Capacity Full", ParkingLotException.ExceptionType.CAPACITY_EXCEEDED);
-            }
-            capacity++;
-        }
+    public boolean isVehicleParked() {
+        return isParked;
     }
 
     private void informOwner() {
@@ -50,11 +47,13 @@ public class ParkingLotSystem {
     /**
      * Method to unPark vehicle if present
      * @return return true or false accordingly
+     * @param vehicle
      */
-    public boolean vehicleUnparking(String vehicleNumber) {
-        if (parkingList.contains(vehicleNumber)) {
-            parkingList.remove(vehicleNumber);
-            //   new AirportSecurity().parkingAvailable();
+    public boolean unParkVehicle(Vehicle vehicle) {
+        if (parkingList.contains(vehicle)) {
+            parkingList.remove(vehicle);
+            isParked = false;
+            new AirportSecurity().parkingAvailable();
             return true;
         }
         return false;
