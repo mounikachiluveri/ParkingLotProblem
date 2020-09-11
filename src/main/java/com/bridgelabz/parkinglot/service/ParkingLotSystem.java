@@ -1,5 +1,7 @@
 package parkinglot;
 
+import com.bridgelabz.parkinglot.exception.ParkingLotException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
