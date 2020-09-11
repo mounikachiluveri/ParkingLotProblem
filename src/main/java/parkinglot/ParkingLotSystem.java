@@ -1,20 +1,25 @@
 package parkinglot;
 
+import parkinglot.Vehicle;
+
 import java.util.ArrayList;
 
 public class ParkingLotSystem {
 
     private static final int MAX_CAPACITY = 2;
     private final ArrayList<Vehicle> parkingList;
+    AirportSecurity airportSecurity;
+    ParkingLotOwner parkingLotOwner;
 
-    AirportSecurity airportSecurity = new AirportSecurity();
-    ParkingLotOwner parkingLotOwner =new ParkingLotOwner();
     public ParkingLotSystem() {
         this.parkingList = new ArrayList<>();
+        this.airportSecurity = new AirportSecurity();
+        this.parkingLotOwner = new ParkingLotOwner();
     }
 
     /**
-     * Method to park vehicle to parking lot
+     *  Method to park vehicle to parking lot
+     * @param vehicle provided vehicle object to park
      * @throws ParkingLotException already present in parking lot
      */
     public void parkVehicle(Vehicle vehicle) throws ParkingLotException {
@@ -28,7 +33,7 @@ public class ParkingLotSystem {
                     ParkingLotException.ExceptionType.CAPACITY_EXCEEDED);
         }
         if (parkingList.size() == MAX_CAPACITY) {
-            airportSecurity.setParkingStatus(true);
+            airportSecurity.setParkingAvailability(true);
             parkingLotOwner.setParkingAvailability(true);
         }
     }
@@ -43,7 +48,7 @@ public class ParkingLotSystem {
 
     public boolean isParkingFull(VIEWER viewer) {
         boolean parkingStatus = false;
-        switch (viewer){
+        switch (viewer) {
             case OWNER:
                 parkingStatus = parkingLotOwner.getParkingStatus();
                 break;
@@ -56,13 +61,13 @@ public class ParkingLotSystem {
     /**
      * Method to unPark vehicle if present
      *
-     * @param vehicle
+     * @param vehicle provides vehicle object to unPark
      * @return return true or false accordingly
      */
     public void unParkVehicle(Vehicle vehicle) {
         if (parkingList.contains(vehicle)) {
             parkingList.remove(vehicle);
-            parkingLotOwner.setParkingAvailability(true);
+            parkingLotOwner.setParkingAvailability(false);
         }
     }
 }

@@ -7,7 +7,7 @@ public class AirportSecurity {
         return parking;
     }
 
-    public void setParkingStatus(boolean parking) {
+    public void setParkingAvailability(boolean parking) {
         this.parking = parking;
     }
 }

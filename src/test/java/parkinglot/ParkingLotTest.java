@@ -42,7 +42,6 @@ public class ParkingLotTest {
         Assert.assertFalse(isParked);
     }
 
-
     //UC3
     @Test
     public void givenVehiclesToPark_WhenCapacityExceeds_ShouldThrowException() {
