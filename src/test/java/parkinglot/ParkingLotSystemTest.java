@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import java.time.LocalDateTime;
 
-public class ParkngLotSystemTest {
+public class ParkingLotSystemTest {
 
     private static final String DRIVER_TYPE_NORMAL = "DRIVER_TYPE_NORMAL";
     private static final String  DRIVER_TYPE_HANDICAPPED = "DRIVER_TYPE_HANDICAPPED";
@@ -256,6 +256,20 @@ public class ParkngLotSystemTest {
             Integer actualResult = parkingLotSystem.getParkingSlot(firstVehicle);
             Assert.assertEquals(expectedResult,parkingLot);
             Assert.assertEquals((Integer)1, actualResult);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenAVehicleWithHandicappedDriver_IfFirstLotHasEmptySlotsTheVehicle_ShouldParkedInTheFirstParkingLot() {
+        try {
+            parkingLotSystem.park(firstVehicle, DRIVER_TYPE_HANDICAPPED);
+            parkingLotSystem.park(secondVehicle, DRIVER_TYPE_HANDICAPPED);
+            ParkingLot presentLot1 = parkingLotSystem.getParkingLotInWhichVehicleIsParked(firstVehicle);
+            ParkingLot presentLot2 = parkingLotSystem.getParkingLotInWhichVehicleIsParked(secondVehicle);
+            Assert.assertEquals(firstParkingLot, presentLot1);
+            Assert.assertEquals(firstParkingLot, presentLot2);
         } catch (ParkingLotException e) {
             e.printStackTrace();
         }
