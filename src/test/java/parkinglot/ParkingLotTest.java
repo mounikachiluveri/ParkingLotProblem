@@ -65,7 +65,7 @@ public class ParkingLotTest {
 
     //UC4
     @Test
-    public void givenVehiclesToPark_IfCapacityFull_ShouldInformAirportSecurity() throws ParkingLotException {
+    public void givenVehiclesToPark_WhenCapacityFull_ShouldInformAirportSecurity() throws ParkingLotException {
         parkingLot.addObserver(airportSecurity);
         Vehicle vehicle1 = new Vehicle();
         Vehicle vehicle2 = new Vehicle();
@@ -88,4 +88,17 @@ public class ParkingLotTest {
         boolean isParkingFull = parkingLotOwner.getParkingCapacity();
         Assert.assertFalse(isParkingFull);
     }
+
+    //UC6
+    @Test
+    public void givenVehicleToAttendant_WhenParkedAccordingToOwner_ShouldReturnSlotNumber() throws ParkingLotException {
+        parkingLot.addObserver(parkingLotOwner);
+        Vehicle vehicle1 = new Vehicle();
+        Vehicle vehicle2 = new Vehicle();
+        parkingLot.parkVehicle(vehicle1);
+        parkingLot.parkVehicle(vehicle2);
+        int slotNumber = parkingLot.getSlotNumber(vehicle2);
+        Assert.assertEquals(2,slotNumber);
+    }
 }
+

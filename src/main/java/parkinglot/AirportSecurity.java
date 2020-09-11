@@ -8,7 +8,7 @@ public class AirportSecurity implements  ParkingLotObserver{
     }
 
     @Override
-    public void setParkingAvailability(boolean parkingStatus) {
+    public void setParkingCapacity(boolean parkingStatus) {
         this.parkingStatus = parkingStatus;
     }
 }
