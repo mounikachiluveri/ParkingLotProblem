@@ -1,7 +1,8 @@
-package parkinglot;
+package com.bridgelabz.parkinglot.model;
 
-public class Vehicle {
+import java.time.LocalTime;
 
+public class Vehicle extends SlotDetails {
     public Vehicle() {
     }
 }
