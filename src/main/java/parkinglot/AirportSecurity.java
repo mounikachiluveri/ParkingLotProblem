@@ -3,7 +3,7 @@ package parkinglot;
 public class AirportSecurity {
     private boolean parking;
 
-    public boolean getParkingStatus() {
+    public boolean getParkingAvailability() {
         return parking;
     }
 

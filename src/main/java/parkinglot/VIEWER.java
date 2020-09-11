@@ -1,5 +1,5 @@
 package parkinglot;
 
-    public enum VIEWER {
-        OWNER, AIRPORT_SECURITY
-    }
+public enum VIEWER {
+    OWNER, AIRPORT_SECURITY
+}

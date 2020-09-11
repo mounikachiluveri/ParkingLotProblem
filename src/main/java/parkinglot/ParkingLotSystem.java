@@ -6,6 +6,7 @@ public class ParkingLotSystem {
 
     private static final int MAX_CAPACITY = 2;
     private final ArrayList<Vehicle> parkingList;
+
     AirportSecurity airportSecurity;
     ParkingLotOwner parkingLotOwner;
 
@@ -48,7 +49,7 @@ public class ParkingLotSystem {
                 parkingStatus = parkingLotOwner.getParkingStatus();
                 break;
             case AIRPORT_SECURITY:
-                parkingStatus = airportSecurity.getParkingStatus();
+                parkingStatus = airportSecurity.getParkingAvailability();
         }
         return parkingStatus;
     }
