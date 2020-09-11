@@ -7,7 +7,6 @@ public class Owner implements IObserver {
     @Override
     public String getParkingLotStatus() {
         return parkingLotStatus;
-
     }
 
     @Override

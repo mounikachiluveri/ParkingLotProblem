@@ -2,26 +2,23 @@ package com.bridgelabz.parkinglot.model;
 
 import com.bridgelabz.parkinglot.model.Vehicle;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class SlotDetails {
+public class Slot {
     private Vehicle vehicle;
-    private LocalTime parkingTime;
+    private LocalDateTime parkingTime;
 
-    public SlotDetails(Vehicle vehicle, LocalTime parkingTime) {
+    public Slot(Vehicle vehicle, LocalDateTime parkingTime) {
         this.vehicle = vehicle;
         this.parkingTime = parkingTime;
-    }
-
-    public SlotDetails() {
     }
 
     public Vehicle getVehicle() {
         return vehicle;
     }
 
-    public LocalTime getParkingTime() {
+    public LocalDateTime getParkingTime() {
         return parkingTime;
     }
 
@@ -29,7 +26,7 @@ public class SlotDetails {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SlotDetails that = (SlotDetails) o;
+        Slot that = (Slot) o;
         return Objects.equals(vehicle, that.vehicle);
     }
 
