@@ -1,13 +1,14 @@
 package parkinglot;
 
-public class AirportSecurity {
-    private boolean parking;
+public class AirportSecurity implements  ParkingLotObserver{
+    private boolean parkingStatus;
 
-    public boolean getParkingAvailability() {
-        return parking;
+    public boolean getParkingCapacity() {
+        return parkingStatus;
     }
 
-    public void setParkingAvailability(boolean parking) {
-        this.parking = parking;
+    @Override
+    public void setParkingAvailability(boolean parkingStatus) {
+        this.parkingStatus = parkingStatus;
     }
 }

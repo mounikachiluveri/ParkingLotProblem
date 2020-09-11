@@ -7,10 +7,14 @@ import org.junit.Test;
 public class ParkingLotTest {
 
     private ParkingLotSystem parkingLot;
+    ParkingLotOwner parkingLotOwner;
+    AirportSecurity airportSecurity;
 
     @Before
-    public void setup(){
+    public void setup() {
         parkingLot = new ParkingLotSystem();
+        parkingLotOwner = new ParkingLotOwner();
+        airportSecurity = new AirportSecurity();
     }
 
     //UC1
@@ -23,24 +27,26 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void givenVehicle_IfPresent_ShouldThrowException() {
+    public void givenVehicle_IfPresentInParkingLot_ShouldThrowException() {
         try {
             Vehicle vehicle1 = new Vehicle();
             parkingLot.parkVehicle(vehicle1);
             parkingLot.parkVehicle(vehicle1);
-        }catch (ParkingLotException e){
+        } catch (ParkingLotException e) {
             Assert.assertEquals(e.type, ParkingLotException.ExceptionType.ALREADY_PRESENT);
         }
     }
 
     //UC2
     @Test
-    public void givenVehicleNumber_WhenUnParked_ShouldUnParkAndReturnFalse() {
+    public void givenVehicle_WhenUnParked_ShouldReturnFalse() throws ParkingLotException {
         Vehicle vehicle1 = new Vehicle();
+        parkingLot.parkVehicle(vehicle1);
         parkingLot.unParkVehicle(vehicle1);
         boolean isParked = parkingLot.isVehicleParked(vehicle1);
         Assert.assertFalse(isParked);
     }
+
 
     //UC3
     @Test
@@ -59,24 +65,27 @@ public class ParkingLotTest {
 
     //UC4
     @Test
-    public void givenVehiclesToPark_WhenCapacityFull_ShouldInformAirportSecurity() throws ParkingLotException {
+    public void givenVehiclesToPark_IfCapacityFull_ShouldInformAirportSecurity() throws ParkingLotException {
+        parkingLot.addObserver(airportSecurity);
         Vehicle vehicle1 = new Vehicle();
         Vehicle vehicle2 = new Vehicle();
         parkingLot.parkVehicle(vehicle1);
         parkingLot.parkVehicle(vehicle2);
-        boolean parkingFull = parkingLot.isParkingFull(VIEWER.AIRPORT_SECURITY);
-        Assert.assertTrue(parkingFull);
+        boolean isParkingFull = airportSecurity.getParkingCapacity();
+        Assert.assertTrue(isParkingFull);
     }
 
     //UC5
     @Test
     public void givenCapacityIsFull_WhenUnParked_ShouldInformParkingLotOwner() throws ParkingLotException {
+        parkingLot.addObserver(parkingLotOwner);
+        parkingLot.addObserver(airportSecurity);
         Vehicle vehicle1 = new Vehicle();
         Vehicle vehicle2 = new Vehicle();
         parkingLot.parkVehicle(vehicle1);
         parkingLot.parkVehicle(vehicle2);
         parkingLot.unParkVehicle(vehicle1);
-        boolean parkingFull = parkingLot.isParkingFull(VIEWER.OWNER);
-        Assert.assertTrue(parkingFull);
+        boolean isParkingFull = parkingLotOwner.getParkingCapacity();
+        Assert.assertFalse(isParkingFull);
     }
 }
