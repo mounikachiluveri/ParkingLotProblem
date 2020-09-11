@@ -20,7 +20,7 @@ public class ParkingLotSystem {
      * @return
      */
     public void parkVehicle(Vehicle vehicle) throws ParkingLotException {
-        if(this.parkingList.contains(vehicle))
+        if (this.parkingList.contains(vehicle))
             throw new ParkingLotException("Present in parking lot",
                     ParkingLotException.ExceptionType.ALREADY_PRESENT);
 
@@ -28,8 +28,6 @@ public class ParkingLotSystem {
             parkingList.add(vehicle);
             isParked = true;
         }
-        //this.informOwner();
-        //  throw new ParkingLotException("Capacity Full", ParkingLotException.ExceptionType.CAPACITY_EXCEEDED);
     }
 
     public boolean isVehicleParked() {
