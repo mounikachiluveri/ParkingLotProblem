@@ -59,7 +59,7 @@ public class ParkingLotTest {
 
     //UC4
     @Test
-    public void givenVehiclesToPark_IfCapacityFull_ShouldInformAirportSecurity() throws ParkingLotException {
+    public void givenVehiclesToPark_WhenCapacityFull_ShouldInformAirportSecurity() throws ParkingLotException {
         Vehicle vehicle1 = new Vehicle();
         Vehicle vehicle2 = new Vehicle();
         parkingLot.parkVehicle(vehicle1);

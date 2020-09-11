@@ -1,6 +1,6 @@
 package parkinglot;
 
-public class ParkingLotOwner implements IInformingAuthority {
+public class ParkingLotOwner implements ParkingLotObserver {
     private boolean parking;
 
     public boolean getParkingStatus() {

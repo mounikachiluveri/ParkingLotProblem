@@ -7,21 +7,17 @@ public class ParkingLotSystem {
     private static final int MAX_CAPACITY = 2;
     private final ArrayList<Vehicle> parkingList;
 
-    AirportSecurity airportSecurity;
-    ParkingLotOwner parkingLotOwner;
+    private final ArrayList<ParkingLotObserver> observerList;
 
     public ParkingLotSystem() {
         this.parkingList = new ArrayList<>();
-        this.airportSecurity = new AirportSecurity();
-        this.parkingLotOwner = new ParkingLotOwner();
+        this.observerList = new ArrayList<>();
     }
 
-    /**
-     * Method to park vehicle to parking lot
-     *
-     * @param vehicle provided vehicle object to park
-     * @throws ParkingLotException already present in parking lot
-     */
+    public void addObserver(ParkingLotObserver observer) {
+        observerList.add(observer);
+    }
+
     public void parkVehicle(Vehicle vehicle) throws ParkingLotException {
         if (parkingList.contains(vehicle))
             throw new ParkingLotException("Present in parking lot",
@@ -29,40 +25,26 @@ public class ParkingLotSystem {
         if (parkingList.size() < MAX_CAPACITY)
             parkingList.add(vehicle);
         else if (parkingList.size() == MAX_CAPACITY) {
-            throw new ParkingLotException("Present in parking lot",
+            throw new ParkingLotException("Parking Capacity is full",
                     ParkingLotException.ExceptionType.CAPACITY_EXCEEDED);
         }
-        if (parkingList.size() == MAX_CAPACITY) {
-            airportSecurity.setParkingAvailability(true);
-            parkingLotOwner.setParkingAvailability(true);
+        if (parkingList.size() == MAX_CAPACITY)
+            this.notifyAllObservers(false);
+    }
+
+    public void unParkVehicle(Vehicle vehicle) {
+        if (parkingList.contains(vehicle)) {
+            parkingList.remove(vehicle);
+            this.notifyAllObservers(true);
         }
+    }
+
+    private void notifyAllObservers(boolean parkingStatus) {
+        for (ParkingLotObserver observer : observerList)
+            observer.setParkingAvailability(parkingStatus);
     }
 
     public boolean isVehicleParked(Vehicle vehicle) {
         return parkingList.contains(vehicle);
-    }
-
-    public boolean isParkingFull(VIEWER viewer) {
-        boolean parkingStatus = false;
-        switch (viewer) {
-            case OWNER:
-                parkingStatus = parkingLotOwner.getParkingStatus();
-                break;
-            case AIRPORT_SECURITY:
-                parkingStatus = airportSecurity.getParkingAvailability();
-        }
-        return parkingStatus;
-    }
-
-    /**
-     * Method to unPark vehicle if present
-     *
-     * @param vehicle provides vehicle object to unPark
-     */
-    public void unParkVehicle(Vehicle vehicle) {
-        if (parkingList.contains(vehicle)) {
-            parkingList.remove(vehicle);
-            parkingLotOwner.setParkingAvailability(false);
-        }
     }
 }
