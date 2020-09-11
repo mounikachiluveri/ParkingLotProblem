@@ -152,6 +152,17 @@ public class ParkingLotTest {
     }
 
     @Test
+    public void givenParkingLot_WhenVehicleNotFound_ShouldThrowException() {
+        Vehicle vehicle = new Vehicle();
+        try {
+            parkingLotService.parkVehicle(4, vehicle);
+            int slotNumber = parkingLotService.findVehicle(3);
+        } catch (ParkingLotServiceException e) {
+                Assert.assertEquals(ParkingLotServiceException.ExceptionType.NO_SUCH_A_VEHICLE, e.exceptionType);
+            }
+    }
+
+    @Test
     public void givenVehicle_WhenTimeAllotted_ShouldReturnParkingTime() {
         Vehicle vehicle = new Vehicle();
         try {
