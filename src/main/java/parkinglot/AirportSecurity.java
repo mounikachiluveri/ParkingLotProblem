@@ -1,17 +1,13 @@
 package parkinglot;
 
 public class AirportSecurity {
-    public boolean parking;
+    private boolean parking;
 
-    public void parkingFull() {
-        this.parking = true;
+    public boolean getParkingStatus() {
+        return parking;
     }
 
-    public void parkingAvailable(){
-        this.parking = false;
-    }
-    public boolean getParkingStatus(){
-        return this.parking;
+    public void setParkingStatus(boolean parking) {
+        this.parking = parking;
     }
 }
-

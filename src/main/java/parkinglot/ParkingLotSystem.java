@@ -7,8 +7,7 @@ public class ParkingLotSystem {
     private static final int MAX_CAPACITY = 2;
     private final ArrayList<Vehicle> parkingList;
 
-    private int capacity = 0;
-    public boolean isParked;
+    AirportSecurity airportSecurity = new AirportSecurity();
 
     public ParkingLotSystem() {
         this.parkingList = new ArrayList<>();
@@ -16,36 +15,45 @@ public class ParkingLotSystem {
 
     /**
      * Method to park vehicle to parking lot
+     *
      * @throws ParkingLotException already present in parking lot
      */
     public void parkVehicle(Vehicle vehicle) throws ParkingLotException {
-        if(parkingList.contains(vehicle))
-            throw new  ParkingLotException("Present in parking lot",
+        if (parkingList.contains(vehicle))
+            throw new ParkingLotException("Present in parking lot",
                     ParkingLotException.ExceptionType.ALREADY_PRESENT);
-
-        if (capacity < MAX_CAPACITY) {
+        if (parkingList.size() < MAX_CAPACITY)
             parkingList.add(vehicle);
-            isParked = true;
-            capacity++;
+        else if (parkingList.size() == MAX_CAPACITY) {
+            throw new ParkingLotException("Present in parking lot",
+                    ParkingLotException.ExceptionType.CAPACITY_EXCEEDED);
         }
-        else
-            throw new ParkingLotException("Capacity Full", ParkingLotException.ExceptionType.CAPACITY_EXCEEDED);
+        if (parkingList.size() == MAX_CAPACITY)
+            airportSecurity.setParkingStatus(true);
     }
 
-    public boolean isVehicleParked() {
-        return isParked;
+    public boolean isVehicleParked(Vehicle vehicle) {
+        return parkingList.contains(vehicle);
     }
+
+    public boolean isVehicleUnParked(Vehicle vehicle) {
+        return !parkingList.contains(vehicle);
+    }
+
+    public boolean isParkingFull() {
+        return airportSecurity.getParkingStatus();
+    }
+
     /**
      * Method to unPark vehicle if present
-     * @return return true or false accordingly
+     *
      * @param vehicle
+     * @return return true or false accordingly
      */
     public void unParkVehicle(Vehicle vehicle) {
         if (parkingList.contains(vehicle)) {
             parkingList.remove(vehicle);
-            isParked = false;
-            new AirportSecurity().parkingAvailable();
-
+            new AirportSecurity().setParkingStatus(false);
         }
     }
 }
