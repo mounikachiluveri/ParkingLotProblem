@@ -1,7 +1,5 @@
 package parkinglot;
 
-import parkinglot.Vehicle;
-
 import java.util.ArrayList;
 
 public class ParkingLotSystem {
@@ -18,7 +16,8 @@ public class ParkingLotSystem {
     }
 
     /**
-     *  Method to park vehicle to parking lot
+     * Method to park vehicle to parking lot
+     *
      * @param vehicle provided vehicle object to park
      * @throws ParkingLotException already present in parking lot
      */
@@ -42,10 +41,6 @@ public class ParkingLotSystem {
         return parkingList.contains(vehicle);
     }
 
-    public boolean isVehicleUnParked(Vehicle vehicle) {
-        return !parkingList.contains(vehicle);
-    }
-
     public boolean isParkingFull(VIEWER viewer) {
         boolean parkingStatus = false;
         switch (viewer) {
@@ -62,7 +57,6 @@ public class ParkingLotSystem {
      * Method to unPark vehicle if present
      *
      * @param vehicle provides vehicle object to unPark
-     * @return return true or false accordingly
      */
     public void unParkVehicle(Vehicle vehicle) {
         if (parkingList.contains(vehicle)) {
