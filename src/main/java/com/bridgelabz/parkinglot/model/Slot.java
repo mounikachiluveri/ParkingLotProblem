@@ -13,12 +13,10 @@ public class Slot {
     }
 
     public ParkingVehicleDetails getVehicle() {
-
         return vehicle;
     }
 
     public LocalDateTime getParkingTime() {
-
         return parkingTime;
     }
 

@@ -6,9 +6,7 @@ public class Owner implements IObserver {
     @Override
     public String getParkingLotStatus() {
         return parkingLotStatus;
-
     }
-
     @Override
     public void update(String parkingLotStatus) {
         this.parkingLotStatus = parkingLotStatus;
