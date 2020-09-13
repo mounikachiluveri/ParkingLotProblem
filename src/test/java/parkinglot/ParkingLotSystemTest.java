@@ -293,4 +293,18 @@ public class ParkingLotSystemTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenVehiclesColour_WhenFound_ShouldReturnListOfWhiteVehicleWithSlotNumber() {
+        try {
+            parkingLotSystem.park(firstVehicleDetails);
+            parkingLotSystem.park(secondVehicleDetails);
+            Map<ParkingLot, List<Integer>> slotNumberListOfVehiclesByColor =
+                    parkingLotSystem.getLotAndSlotListOfVehiclesByColor(VehicleColour.WHITE);
+            Assert.assertEquals(1, slotNumberListOfVehiclesByColor.get(firstParkingLot).get(0).intValue());
+            Assert.assertEquals(1, slotNumberListOfVehiclesByColor.get(secondParkingLot).get(0).intValue());
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+    }
 }
