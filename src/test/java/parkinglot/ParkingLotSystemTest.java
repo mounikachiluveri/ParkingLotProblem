@@ -279,4 +279,18 @@ public class ParkingLotSystemTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenLargeVehicle_ShouldGetParkedInTheLotWithMostEmptySlots() {
+        try {
+            ParkingVehicleDetails vehicle1 = new ParkingVehicleDetails(new Object(),VehicleSize.LARGE,DriverType.NORMAL);
+            parkingLotSystem.park(firstVehicle);
+            parkingLotSystem.park(secondVehicle);
+            parkingLotSystem.park(vehicle1);
+            ParkingLot highestNumOfFreeSpace = parkingLotSystem.getParkingLotInWhichVehicleIsParked(vehicle1);
+            Assert.assertEquals(thirdParkingLot, highestNumOfFreeSpace);
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+    }
 }
