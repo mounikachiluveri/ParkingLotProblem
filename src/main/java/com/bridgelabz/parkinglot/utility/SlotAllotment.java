@@ -1,20 +1,17 @@
 package com.bridgelabz.parkinglot.utility;
-
 import com.bridgelabz.parkinglot.exception.ParkingLotException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class SlotAllotment {
-
     public Integer parkingLotCapacity;
     public List<Integer> availableParkingSlots;
 
     public SlotAllotment(int parkingLotCapacity) {
         this.parkingLotCapacity = parkingLotCapacity;
-        this.setInitialParkingStatus(parkingLotCapacity);
+        this.setInitialParkingStatus(parkingLotCapacity)    ;
     }
 
     public void setInitialParkingStatus(Integer parkingLotCapacity) {

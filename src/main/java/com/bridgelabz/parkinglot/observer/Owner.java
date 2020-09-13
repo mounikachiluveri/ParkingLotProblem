@@ -1,12 +1,12 @@
 package com.bridgelabz.parkinglot.observer;
 
 public class Owner implements IObserver {
-
     private String parkingLotStatus;
 
     @Override
     public String getParkingLotStatus() {
         return parkingLotStatus;
+
     }
 
     @Override

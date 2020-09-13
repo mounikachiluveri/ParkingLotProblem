@@ -1,24 +1,24 @@
 package com.bridgelabz.parkinglot.model;
 
-import com.bridgelabz.parkinglot.model.Vehicle;
-
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Slot {
-    private Vehicle vehicle;
+    private ParkingVehicleDetails vehicle;
     private LocalDateTime parkingTime;
 
-    public Slot(Vehicle vehicle, LocalDateTime parkingTime) {
+    public Slot(ParkingVehicleDetails vehicle, LocalDateTime parkingTime) {
         this.vehicle = vehicle;
         this.parkingTime = parkingTime;
     }
 
-    public Vehicle getVehicle() {
+    public ParkingVehicleDetails getVehicle() {
+
         return vehicle;
     }
 
     public LocalDateTime getParkingTime() {
+
         return parkingTime;
     }
 
