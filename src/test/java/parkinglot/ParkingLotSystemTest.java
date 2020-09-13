@@ -307,4 +307,20 @@ public class ParkingLotSystemTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenARequestToGetSlotsOfAllBlueToyota_WhenFound_ShouldReturnListOfSimilarVehiclesSlotNumber() {
+        Vehicle vehicle = new Vehicle("MH04 AB 9999", VehicleCompany.TOYOTA, VehicleColour.BLUE);
+        ParkingVehicleDetails vehicleDetails = new ParkingVehicleDetails(vehicle, VehicleSize.LARGE, DriverType.NORMAL, "sagar");
+        try {
+
+            parkingLotSystem.park(firstVehicleDetails);
+            parkingLotSystem.park(vehicleDetails);
+            Map<ParkingLot, List<Integer>> slotNumberListOfVehiclesByCompanyAndColor =
+                    parkingLotSystem.getLotAndSlotNumberByCompanyAndColor(VehicleCompany.TOYOTA, VehicleColour.BLUE);
+            Assert.assertEquals(1, slotNumberListOfVehiclesByCompanyAndColor.get(secondParkingLot).get(0).intValue());
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+    }
 }
