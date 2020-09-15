@@ -155,16 +155,17 @@ public class ParkingLot {
         return slotNumbers;
     }
 
-    public List<Integer> getSlotNumbersBySizeAndType(VehicleSize vehicleSize, DriverType driverType) {
+    public List<Integer> getSlotNumbersBySizeAndDriverType(DriverType driverType, VehicleSize vehicleSize) {
         List<Integer> slotNumbers = new ArrayList<>();
         for (Integer slotNumber : parkedVehicles.keySet()) {
-            if (parkedVehicles.get(slotNumber).getVehicle().getVehicle().getVehicleSize().equals(vehicleSize) &&
-                    parkedVehicles.get(slotNumber).getVehicle().getVehicle().getDriverType().equals(driverType)) {
+            if (parkedVehicles.get(slotNumber).getVehicle().getVehicleSize() == vehicleSize &&
+                    parkedVehicles.get(slotNumber).getVehicle().getDriverType() == driverType) {
                 slotNumbers.add(slotNumber);
             }
         }
         return slotNumbers;
     }
+
 
     public List<Integer> getVehiclesParkedFromTime(int time) {
         List<Integer> slotNumbers = new ArrayList<>();

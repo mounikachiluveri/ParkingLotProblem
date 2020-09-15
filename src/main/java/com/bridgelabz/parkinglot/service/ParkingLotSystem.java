@@ -85,17 +85,6 @@ public class ParkingLotSystem {
         return vehicleByCompanyAndColour;
     }
 
-    public Map<ParkingLot, List<Integer>> getLotAndSlotNumberBySizeAndHandicapped(VehicleSize vehiclesize, DriverType drivertype) {
-        Map<ParkingLot, List<Integer>> vehicleBySizeAndType = new HashMap<>();
-        for (ParkingLot parkingLot : this.parkingLots) {
-            List<Integer> listOfSlots = parkingLot.getSlotNumbersBySizeAndType(vehiclesize, drivertype);
-            if (listOfSlots.size() > 0) {
-                vehicleBySizeAndType.put(parkingLot, listOfSlots);
-            }
-        }
-        return vehicleBySizeAndType;
-    }
-
     public Map<ParkingLot, List<Integer>> getVehiclesParkedFromTime(int time) {
         Map<ParkingLot, List<Integer>> slotNumbersByTime = new HashMap<>();
         for (ParkingLot parkingLot : this.parkingLots) {
@@ -105,5 +94,16 @@ public class ParkingLotSystem {
             }
         }
         return slotNumbersByTime;
+    }
+
+    public Map<ParkingLot, List<Integer>> getSlotNumbersBySizeAndDriverType(DriverType driverType, VehicleSize vehicleSize) {
+        Map<ParkingLot, List<Integer>> lotAndSlotNumbers = new HashMap<>();
+        for (ParkingLot parkingLot : this.parkingLots) {
+            List<Integer> slotNumbers = parkingLot.getSlotNumbersBySizeAndDriverType(driverType, vehicleSize);
+            if (slotNumbers.size() > 0) {
+                lotAndSlotNumbers.put(parkingLot, slotNumbers);
+            }
+        }
+        return lotAndSlotNumbers;
     }
 }
