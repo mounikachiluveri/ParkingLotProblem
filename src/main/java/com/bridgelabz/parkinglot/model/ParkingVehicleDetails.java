@@ -21,22 +21,18 @@ public class ParkingVehicleDetails {
     }
 
     public Vehicle getVehicle() {
-
         return vehicle;
     }
 
     public VehicleSize getVehicleSize() {
-
         return vehicleSize;
     }
 
-    public DriverType getDriverType()
-    {
+    public DriverType getDriverType() {
         return driverType;
     }
 
     public String getAttendantName() {
-
         return attendantName;
     }
 
@@ -49,10 +45,5 @@ public class ParkingVehicleDetails {
                 vehicleSize == that.vehicleSize &&
                 driverType == that.driverType &&
                 Objects.equals(attendantName, that.attendantName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(vehicle, vehicleSize, driverType, attendantName);
     }
 }

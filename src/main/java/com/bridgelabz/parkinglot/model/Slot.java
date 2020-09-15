@@ -27,9 +27,4 @@ public class Slot {
         Slot that = (Slot) o;
         return Objects.equals(vehicle, that.vehicle);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(vehicle);
-    }
 }

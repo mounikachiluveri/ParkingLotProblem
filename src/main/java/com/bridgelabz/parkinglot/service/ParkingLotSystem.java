@@ -96,4 +96,14 @@ public class ParkingLotSystem {
         return vehicleBySizeAndType;
     }
 
+    public Map<ParkingLot, List<Integer>> getVehiclesParkedFromTime(int time) {
+        Map<ParkingLot, List<Integer>> slotNumbersByTime = new HashMap<>();
+        for (ParkingLot parkingLot : this.parkingLots) {
+            List<Integer> slotNumbers = parkingLot.getVehiclesParkedFromTime(30);
+            if (slotNumbers.size() > 0) {
+                slotNumbersByTime.put(parkingLot, slotNumbers);
+            }
+        }
+        return slotNumbersByTime;
+    }
 }

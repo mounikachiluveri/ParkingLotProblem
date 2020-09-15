@@ -119,6 +119,10 @@ public class ParkingLot {
         return slot.getParkingTime();
     }
 
+    public LocalDateTime getCurrentTime() {
+        return LocalDateTime.now();
+    }
+
     public int getParkingDuration(ParkingVehicleDetails vehicle) {
         Duration duration = Duration.between(LocalDateTime.now(), this.getParkingTime(vehicle));
         return (int) duration.toMinutes();
@@ -156,6 +160,16 @@ public class ParkingLot {
         for (Integer slotNumber : parkedVehicles.keySet()) {
             if (parkedVehicles.get(slotNumber).getVehicle().getVehicle().getVehicleSize().equals(vehicleSize) &&
                     parkedVehicles.get(slotNumber).getVehicle().getVehicle().getDriverType().equals(driverType)) {
+                slotNumbers.add(slotNumber);
+            }
+        }
+        return slotNumbers;
+    }
+
+    public List<Integer> getVehiclesParkedFromTime(int time) {
+        List<Integer> slotNumbers = new ArrayList<>();
+        for (Integer slotNumber : parkedVehicles.keySet()) {
+            if ((parkedVehicles.get(slotNumber).getParkingTime().getMinute() - getCurrentTime().getMinute()) <= time) {
                 slotNumbers.add(slotNumber);
             }
         }

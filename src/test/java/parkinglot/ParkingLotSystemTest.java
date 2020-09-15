@@ -1,5 +1,4 @@
 package parkinglot;
-
 import com.bridgelabz.parkinglot.enums.VehicleColour;
 import com.bridgelabz.parkinglot.enums.VehicleCompany;
 import com.bridgelabz.parkinglot.exception.ParkingLotException;
@@ -14,6 +13,7 @@ import com.bridgelabz.parkinglot.service.ParkingLotSystem;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -350,4 +350,31 @@ public class ParkingLotSystemTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenARequestToGetSlotsOfAllVehicleParkedBefore30Min_WhenFound_ShouldReturnListOfSimilarVehiclesSlotNumber() {
+        try {
+            parkingLotSystem.park(firstVehicleDetails);
+            parkingLotSystem.park(secondVehicleDetails);
+            Map<ParkingLot, List<Integer>> slotNumbersVehiclesByTime =
+                    parkingLotSystem.getVehiclesParkedFromTime(30);
+            Assert.assertEquals(1, slotNumbersVehiclesByTime.get(firstParkingLot).get(0).intValue());
+            Assert.assertEquals(1, slotNumbersVehiclesByTime.get(secondParkingLot).get(0).intValue());
+        } catch (ParkingLotException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

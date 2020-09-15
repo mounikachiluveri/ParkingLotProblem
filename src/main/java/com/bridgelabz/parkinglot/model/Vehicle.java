@@ -8,7 +8,6 @@ import com.bridgelabz.parkinglot.enums.VehicleSize;
 import java.util.Objects;
 
 public class Vehicle {
-
     private final String vehicleNumber;
     private final VehicleCompany company;
     private final VehicleColour vehicleColour;
@@ -41,7 +40,6 @@ public class Vehicle {
         return driverType;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,10 +48,5 @@ public class Vehicle {
         return Objects.equals(vehicleNumber, vehicle.vehicleNumber) &&
                 company == vehicle.company &&
                 vehicleColour == vehicle.vehicleColour;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(vehicleNumber, company, vehicleColour);
     }
 }

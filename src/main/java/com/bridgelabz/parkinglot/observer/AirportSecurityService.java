@@ -11,7 +11,6 @@ public class AirportSecurityService implements IObserver {
 
     @Override
     public void update(String parkingLotStatus) {
-
         this.parkingLotStatus = parkingLotStatus;
     }
 }
