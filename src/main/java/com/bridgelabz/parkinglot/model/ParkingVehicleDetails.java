@@ -21,18 +21,22 @@ public class ParkingVehicleDetails {
     }
 
     public Vehicle getVehicle() {
+
         return vehicle;
     }
 
     public VehicleSize getVehicleSize() {
+
         return vehicleSize;
     }
 
-    public DriverType getDriverType() {
+    public DriverType getDriverType()
+    {
         return driverType;
     }
 
     public String getAttendantName() {
+
         return attendantName;
     }
 

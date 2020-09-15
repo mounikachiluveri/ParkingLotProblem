@@ -6,13 +6,13 @@ import com.bridgelabz.parkinglot.exception.ParkingLotException;
 import com.bridgelabz.parkinglot.enums.DriverType;
 import com.bridgelabz.parkinglot.model.ParkingVehicleDetails;
 import com.bridgelabz.parkinglot.enums.VehicleSize;
+import com.bridgelabz.parkinglot.model.Vehicle;
 
 import java.util.*;
 
 public class ParkingLotSystem {
-
-
     public List<ParkingLot> parkingLots;
+    private Object Vehicle;
 
     public ParkingLotSystem(ParkingLot... parkingLot) {
         this.parkingLots = new ArrayList<>(Arrays.asList(parkingLot));
@@ -84,4 +84,16 @@ public class ParkingLotSystem {
         }
         return vehicleByCompanyAndColour;
     }
+
+    public Map<ParkingLot, List<Integer>> getLotAndSlotNumberBySizeAndHandicapped(VehicleSize vehiclesize, DriverType drivertype) {
+        Map<ParkingLot, List<Integer>> vehicleBySizeAndType = new HashMap<>();
+        for (ParkingLot parkingLot : this.parkingLots) {
+            List<Integer> listOfSlots = parkingLot.getSlotNumbersBySizeAndType(vehiclesize, drivertype);
+            if (listOfSlots.size() > 0) {
+                vehicleBySizeAndType.put(parkingLot, listOfSlots);
+            }
+        }
+        return vehicleBySizeAndType;
+    }
+
 }
